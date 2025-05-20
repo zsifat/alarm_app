@@ -1,8 +1,12 @@
 import 'package:alarm_app/common_widgets/custom_button.dart';
 import 'package:alarm_app/constants/image_constants.dart';
+import 'package:alarm_app/features/wellcome/presentation/bloc/loaction_cubit.dart';
+import 'package:alarm_app/features/wellcome/presentation/bloc/location_state.dart';
 import 'package:alarm_app/helpers/app_theme/app_colors.dart';
 import 'package:alarm_app/helpers/app_theme/app_textstyles.dart';
+import 'package:alarm_app/helpers/location_service/location_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../common_widgets/custom_alarm_item.dart';
@@ -45,10 +49,20 @@ class _HomeScreenState extends State<HomeScreen> {
                           width: 10,
                         ),
                         Expanded(
-                            child: Text(
-                          "79 Regent's Park Rd, London NW1 8UY, United Kingdom",
-                          style: AppTextStyles.t16b400_FFF,
-                        ))
+                            child: BlocBuilder<LocationCubit, LocationState>(
+                              builder: (context, state) {
+                                if(state is LocationLoaded) {
+                                  return Text(state.locationName,
+                                  style: AppTextStyles.t16b400_FFF,
+                                );
+                                }else{
+                                  return Text(
+                                    "Current Location Not Available",
+                                    style: AppTextStyles.t16b400_FFF,
+                                  );
+                                }
+                              },
+                            ))
                       ],
                     ),
                     SizedBox(height: 10,),
@@ -75,8 +89,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   Expanded(
                     child: ListView.separated(
-                      padding: EdgeInsets.zero,
-                      shrinkWrap: true,
+                        padding: EdgeInsets.zero,
+                        shrinkWrap: true,
                         itemBuilder: (context, index) {
                           return CustomAlarmItem(
                             onChanged: (value) {},

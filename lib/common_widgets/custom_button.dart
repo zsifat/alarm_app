@@ -9,15 +9,16 @@ class CustomButton extends StatelessWidget {
   final TextStyle? titleTextStyle;
   final String? iconPath;
   final Color? backgroundColor;
+  final bool isLoading;
 
-  const CustomButton({
-    super.key,
-    this.onTap,
-    required this.title,
-    this.titleTextStyle,
-    this.iconPath,
-    this.backgroundColor = AppColors.purpleDarkCDF,
-  });
+  const CustomButton(
+      {super.key,
+      this.onTap,
+      required this.title,
+      this.titleTextStyle,
+      this.iconPath,
+      this.backgroundColor = AppColors.purpleDarkCDF,
+      this.isLoading = false});
 
   @override
   Widget build(BuildContext context) {
@@ -38,19 +39,26 @@ class CustomButton extends StatelessWidget {
           ],
         ),
         alignment: Alignment.center,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              title,
-              style: titleTextStyle
-            ),
-            if(iconPath!=null)...[
-              SizedBox(width: 4,),
-              SvgPicture.asset(iconPath!)
-            ]
-          ],
-        ),
+        child: isLoading
+            ? SizedBox(
+                height: 18,
+                width: 18,
+                child: CircularProgressIndicator(
+                  strokeWidth: 2,
+                  color: AppColors.whiteFFF,
+                ))
+            : Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(title, style: titleTextStyle),
+                  if (iconPath != null) ...[
+                    SizedBox(
+                      width: 4,
+                    ),
+                    SvgPicture.asset(iconPath!)
+                  ]
+                ],
+              ),
       ),
     );
   }

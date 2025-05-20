@@ -1,0 +1,4 @@
+enum LocationFetchSource {
+  useCurrentLocationButton,
+  homeButton,
+}
