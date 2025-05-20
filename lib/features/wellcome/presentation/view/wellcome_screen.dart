@@ -5,7 +5,7 @@ import 'package:alarm_app/helpers/app_theme/app_colors.dart';
 import 'package:alarm_app/helpers/app_theme/app_textstyles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import '../../../home/presentation/widget/custom_widget.dart';
 import '../../data/location_fetch_source.dart';
 import '../cubit/location_cubit.dart';
 import '../cubit/location_state.dart';
@@ -20,6 +20,9 @@ class WelcomeScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: BlocConsumer<LocationCubit, LocationState>(
           listener: (context, state) {
+            if (state is LocationServiceDisabled) {
+              showLocationPermissionDialog(context);
+            }
             if (state is LocationError) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text(state.message)),
@@ -50,7 +53,7 @@ class WelcomeScreen extends StatelessWidget {
                 height: 50,
               ),
               Image.asset(
-                'assets/images/sunset.png',
+                ImageConstants.sunsetImage,
               ),
               SizedBox(
                 height: 8,

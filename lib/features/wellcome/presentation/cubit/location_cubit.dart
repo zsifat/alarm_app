@@ -1,5 +1,6 @@
 import 'package:alarm_app/helpers/location_service/location_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geolocator/geolocator.dart';
 
 import '../../data/location_fetch_source.dart';
 import 'location_state.dart';
@@ -10,6 +11,13 @@ class LocationCubit extends Cubit<LocationState> {
   Future<void> fetchLocation(LocationFetchSource source) async {
     try {
       emit(LocationLoading(source));
+
+      bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
+      if (!serviceEnabled) {
+        emit(LocationServiceDisabled());
+        return;
+      }
+
       final position = await LocationService.getCurrentLocation();
 
       if (position != null) {

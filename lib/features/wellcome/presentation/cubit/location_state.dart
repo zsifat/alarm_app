@@ -26,6 +26,9 @@ class LocationLoaded extends LocationState {
   List<Object?> get props => [locationName];
 }
 
+class LocationServiceDisabled extends LocationState {}
+
+
 class LocationError extends LocationState {
   final String message;
 

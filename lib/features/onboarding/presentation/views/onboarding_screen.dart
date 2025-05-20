@@ -1,3 +1,4 @@
+import 'package:alarm_app/constants/image_constants.dart';
 import 'package:alarm_app/features/wellcome/presentation/view/wellcome_screen.dart';
 import 'package:alarm_app/helpers/app_theme/app_colors.dart';
 import 'package:alarm_app/helpers/app_theme/app_textstyles.dart';
@@ -20,19 +21,19 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   final List<OnboardPageModel> onboardModels = [
     OnboardPageModel(
-      gifAsset: 'assets/gifs/onboard_gif_1.gif',
+      gifAsset: ImageConstants.onboarding1,
       title: 'Sync with Nature’s Rhythm',
       description:
           'Experience a peaceful transition into the evening with an alarm that aligns with the sunset."Your perfect reminder, always 15 minutes before sundown',
     ),
     OnboardPageModel(
-      gifAsset: 'assets/gifs/onboard_gif_2.gif',
+      gifAsset: ImageConstants.onboarding2,
       title: 'Effortless & Automatic',
       description:
           'No need to set alarms manually. Wakey calculates the sunset time for your location and alerts you on time.',
     ),
     OnboardPageModel(
-      gifAsset: 'assets/gifs/onboard_gif_3.gif',
+      gifAsset: ImageConstants.onboarding3,
       title: 'Relax & Unwind',
       description: 'hope to take the courage to pursue your dreams.',
     ),
