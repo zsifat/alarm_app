@@ -1,7 +1,6 @@
 import 'package:alarm_app/features/onboarding/presentation/views/onboarding_screen.dart';
 import 'package:alarm_app/helpers/app_theme/app_colors.dart';
 import 'package:alarm_app/helpers/bloc_providers.dart';
-import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
