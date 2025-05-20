@@ -4,16 +4,18 @@ import 'package:google_fonts/google_fonts.dart';
 import '../helpers/app_theme/app_colors.dart';
 import '../helpers/app_theme/app_textstyles.dart';
 
-class CustomAlarmItem extends StatefulWidget {
+class CustomAlarmItem extends StatelessWidget {
   final ValueChanged onChanged;
-  const CustomAlarmItem({super.key, required this.onChanged});
+  final bool isEnabled;
+  final String time;
+  final String date;
+  const CustomAlarmItem(
+      {super.key,
+      required this.onChanged,
+      required this.date,
+      required this.time,
+      required this.isEnabled});
 
-  @override
-  State<CustomAlarmItem> createState() => _CustomAlarmItemState();
-}
-
-class _CustomAlarmItemState extends State<CustomAlarmItem> {
-  bool isActive = false;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,12 +25,12 @@ class _CustomAlarmItemState extends State<CustomAlarmItem> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            '7:10 pm',
+            time,
             style: AppTextStyles.t24b400_FFF,
           ),
           Spacer(),
           Text(
-            'Fri 21 Mar 2025',
+            date,
             style: AppTextStyles.t14b400_FFF_Poppings,
           ),
           SizedBox(
@@ -37,13 +39,8 @@ class _CustomAlarmItemState extends State<CustomAlarmItem> {
           Transform.scale(
             scale: 0.8,
             child: Switch.adaptive(
-              value: isActive,
-              onChanged: (value) {
-                setState(() {
-                  isActive=value;
-                });
-                widget.onChanged(value);
-              },
+              value: isEnabled,
+              onChanged: onChanged,
               activeTrackColor: AppColors.purpleDarkCDF,
               trackOutlineColor: null,
               inactiveTrackColor: AppColors.whiteFFF,

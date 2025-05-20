@@ -1,14 +1,14 @@
 import 'package:alarm_app/common_widgets/custom_button.dart';
 import 'package:alarm_app/constants/image_constants.dart';
 import 'package:alarm_app/features/home/presentation/view/home_screen.dart';
-import 'package:alarm_app/features/wellcome/presentation/bloc/location_state.dart';
 import 'package:alarm_app/helpers/app_theme/app_colors.dart';
 import 'package:alarm_app/helpers/app_theme/app_textstyles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/location_fetch_source.dart';
-import '../bloc/loaction_cubit.dart';
+import '../cubit/location_cubit.dart';
+import '../cubit/location_state.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
